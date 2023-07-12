@@ -58,14 +58,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   child: Padding(
     padding: const EdgeInsets.only(top:10.0),
     child: AppBar(
+      automaticallyImplyLeading: false,
       elevation: 0.0,
       backgroundColor: Colors.white,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/image/logo2.png"),
-        ],
-      ),
+      
+      title: Image.asset("assets/image/logo2.png"),
       centerTitle: true,
       actions: [
         Padding(
@@ -73,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const Welcome1()),
               );
