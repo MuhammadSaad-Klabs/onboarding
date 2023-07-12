@@ -1,7 +1,9 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project1/screens/Welcome/welcome2.dart';
+import 'package:project1/screens/otp/otp.dart';
 
 class ButtonWidget extends StatelessWidget {
   String BtnTxt;
@@ -16,7 +18,14 @@ class ButtonWidget extends StatelessWidget {
         width: 382,
         height: 56,
         child: ElevatedButton(
-          onPressed: (){},
+          onPressed: (){
+            Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Otp(),
+                          ),
+                        );
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xffFF595A),
             shape: RoundedRectangleBorder(
@@ -41,7 +50,14 @@ class ButtonWidget2 extends StatelessWidget {
         width: 382,
         height: 56,
         child: ElevatedButton(
-          onPressed: (){},
+          onPressed: (){
+            Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Welcome2(),
+                          ),
+                        );
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xffFFFFFF),
             shape: RoundedRectangleBorder(
@@ -74,7 +90,14 @@ class ButtonWidget3 extends StatelessWidget {
         width: 110,
         height: 32,
         child: ElevatedButton(
-          onPressed: (){},
+          onPressed: (){
+            Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Otp(),
+                          ),
+                        );
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xffFFFFFF),
             shape: RoundedRectangleBorder(
