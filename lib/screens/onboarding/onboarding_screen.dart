@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project1/screens/Welcome/welcome1.dart';
 import 'package:project1/screens/onboarding/onboarding_contents.dart';
 import 'package:project1/screens/onboarding/size_config.dart';
 
@@ -65,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 itemCount: contents.length,
                 itemBuilder: (context, i) {
                   return Padding(
-                    padding: const EdgeInsets.only(top: 40.0, bottom: 40.0),
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 40.0),
                     child: Column(
                       children: [
                         Row(
@@ -134,8 +135,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     padding: const EdgeInsets.only(
                                         bottom: 30, left: 10, right: 10),
                                     child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: const Text("Next"),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Welcome1()),
+                                        );
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Color(0xffFF595A),
                                         shape: RoundedRectangleBorder(
@@ -151,6 +158,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                         textStyle: TextStyle(
                                             fontSize: (width <= 550) ? 13 : 17),
                                       ),
+                                      child: const Text("Next"),
                                     ),
                                   )
                                 : Padding(
@@ -164,7 +172,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                           curve: Curves.easeIn,
                                         );
                                       },
-                                      child: const Text("Next"),
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Color(0xffFF595A),
                                         shape: RoundedRectangleBorder(
@@ -180,6 +187,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                         textStyle: TextStyle(
                                             fontSize: (width <= 550) ? 13 : 17),
                                       ),
+                                      child: const Text("Next"),
                                     ),
                                   )
                             // Padding(

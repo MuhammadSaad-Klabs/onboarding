@@ -19,7 +19,7 @@ class _Screen1State extends State<Screen1> {
   void initState() {
     super.initState();
     _videoPlayerController =
-        VideoPlayerController.asset('assets/video/video.mp4')
+        VideoPlayerController.asset('assets/video/video2.mp4')
           ..initialize().then((_) {
             setState(() {
               _isVideoInitialized = true;

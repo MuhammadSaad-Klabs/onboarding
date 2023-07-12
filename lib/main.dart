@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project1/screens/Welcome/welcome1.dart';
+import 'package:project1/screens/Welcome/welcome2.dart';
 import 'package:project1/screens/screen1.dart';
 
 void main() {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Screen1(),
+      home: const Welcome1(),
     );
   }
 }
