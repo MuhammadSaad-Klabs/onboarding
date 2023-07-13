@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project1/screens/screen1.dart';
 
 void main() {
@@ -10,13 +12,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ScreenUtilInit(
+      designSize: const Size(375, 667), 
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context , child) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(
+      
+      systemOverlayStyle: SystemUiOverlayStyle( 
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
       ),
-      home: const Screen1(),
-    );
+    ),
+        ),
+        home: child,
+      );
+      },
+        child: const Screen1(),
+      );
+    
   }
 }
+

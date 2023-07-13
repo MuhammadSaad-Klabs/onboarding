@@ -85,7 +85,7 @@ class ButtonWidget3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.only(left: 24,right: 24,bottom: 36,top: 36),
+      padding: const EdgeInsets.only(left: 24,right: 24,),
       child: SizedBox(
         width: 110,
         height: 32,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project1/screens/about/about.dart';
@@ -62,12 +63,14 @@ class _OtpState extends State<Otp> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
           child: InkWell(
             onTap: () {
               Navigator.push(
@@ -87,60 +90,57 @@ class _OtpState extends State<Otp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 26,
-            ),
+            SizedBox(height: ScreenUtil().setHeight(26)),
             Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
               child: Text(
                 "Enter verification code",
                 style: GoogleFonts.firaSans(
-                  fontSize: 24,
+                  fontSize: ScreenUtil().setSp(24),
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 12,
-            ),
+            SizedBox(height: ScreenUtil().setHeight(12)),
             Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
               child: Row(
                 children: [
                   Text(
                     "We sent a code to your number ",
                     style: GoogleFonts.firaSans(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
+                      fontSize: ScreenUtil().setSp(14),
+                      fontWeight: FontWeight.w300,
                       color: Colors.black,
                     ),
                   ),
-                  Text(
-                    "+973 36847302",
-                    style: GoogleFonts.firaSans(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
+                  Expanded(
+                    child: Text(
+                      "+973 36847302",
+                      style: GoogleFonts.firaSans(
+                        fontSize: ScreenUtil().setSp(14),
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
+            SizedBox(height: ScreenUtil().setHeight(30)),
             Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   OtpTextField(
+                    borderRadius: BorderRadius.circular(12),
+                    focusedBorderColor: Colors.black,
+                    fieldWidth:50,
                     numberOfFields: 4,
                     borderColor: Colors.black,
-                    // Set to true to show as box or false to show as dash
                     showFieldAsBox: true,
-                    // Runs when a code is typed in
                     onCodeChanged: (String code) {
                       for (var i = 0; i < otpList.length; i++) {
                         if (i < code.length) {
@@ -153,38 +153,26 @@ class _OtpState extends State<Otp> {
                         isButtonDisabled = !isAllOtpFilled();
                       });
                     },
-                    // Runs when every text field is filled
                     onSubmit: (String verificationCode) {
                       setState(() {
                         isButtonDisabled = false;
                         otpList.clear();
                       });
-                      // showDialog(
-                      //   context: context,
-                      //   builder: (context) {
-                      //     return AlertDialog(
-                      //       title: Text("Verification Code"),
-                      //       content: Text('Code entered is $verificationCode'),
-                      //     );
-                      //   },
-                      // );
                     },
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            SizedBox(height: ScreenUtil().setHeight(32)),
             Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
               child: Row(
                 children: [
                   Text(
                     "Didn’t receive the code? ",
                     style: GoogleFonts.firaSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
+                      fontSize: ScreenUtil().setSp(12),
+                      fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
                   ),
@@ -192,57 +180,60 @@ class _OtpState extends State<Otp> {
                       ? Text(
                           "Resend",
                           style: GoogleFonts.firaSans(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.pink, // Change to pink color
+                            fontSize: ScreenUtil().setSp(12),
+                            fontWeight: FontWeight.w300,
+                            color: const Color(0xffFF595A),
                           ),
                         )
                       : Text(
                           "Resend in: 00:${_start.toString().padLeft(2, '0')}",
                           style: GoogleFonts.firaSans(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
+                            fontSize: ScreenUtil().setSp(12),
+                            fontWeight: FontWeight.w300,
                             color: Colors.black,
                           ),
                         ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 199,
-            ),
+            SizedBox(height: ScreenUtil().setHeight(199)),
             Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
+              padding: EdgeInsets.only(
+                  left: ScreenUtil().setWidth(24),
+                  right: ScreenUtil().setWidth(24)),
               child: Container(
-                width: 382,
-                height: 56,
+                width: ScreenUtil().setWidth(382),
+                height: ScreenUtil().setHeight(56),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius:
+                      BorderRadius.circular(ScreenUtil().setWidth(12)),
                   color: isButtonDisabled
-                      ? const Color.fromARGB(255, 219, 162, 181)
-                          .withOpacity(0.5)
+                      ? const Color(0xffFFBDBD).withOpacity(0.5)
                       : const Color(0xffFF595A),
                 ),
                 child: ElevatedButton(
-                  onPressed: isButtonDisabled ? null : () {
-                    Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>  About(),
-                          ),
-                        );
-                  },
+                  onPressed: isButtonDisabled
+                      ? null
+                      : () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => About(),
+                            ),
+                          );
+                        },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius:
+                          BorderRadius.circular(ScreenUtil().setWidth(12)),
                     ),
                   ),
                   child: Text(
                     "Continue",
                     style: GoogleFonts.firaSans(
-                      fontSize: 16,
+                      fontSize: ScreenUtil().setSp(16),
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),

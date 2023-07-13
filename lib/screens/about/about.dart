@@ -1,33 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project1/screens/about/about2.dart';
 import 'package:project1/screens/about/widgets/custom_textformfield.dart';
 import 'package:project1/screens/about/widgets/txt_widget.dart';
 import 'package:project1/screens/onboarding/onboarding_screen.dart';
-import 'package:project1/screens/screen1.dart';
 
-class About extends StatelessWidget {
-  About({super.key});
-  final _formkey = GlobalKey<FormState>();
+class About extends StatefulWidget {
+  About({Key? key}) : super(key: key);
+
+  @override
+  State<About> createState() => _AboutState();
+}
+
+class _AboutState extends State<About> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController nameController = TextEditingController();
+
+  final TextEditingController idController = TextEditingController();
+
+  final TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController idController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    final Size screenSize = MediaQuery.of(context).size;
-    //final double screenWidth = screenSize.width;
-    final double screenHeight = screenSize.height;
+    ScreenUtil.init(context, designSize: const Size(375, 812));
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
           child: InkWell(
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const OnboardingScreen()),
+                MaterialPageRoute(builder: (context) => const OnboardingScreen()),
               );
             },
             child: const Icon(
@@ -39,48 +48,44 @@ class About extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: _formkey,
+          key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 26,
-              ),
+              // SizedBox(height: ScreenUtil().setHeight(26)),
               Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
                 child: Text(
                   "Set up your account",
                   style: GoogleFonts.firaSans(
-                    fontSize: 24,
+                    fontSize: ScreenUtil().setSp(24),
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 12,
-              ),
+              SizedBox(height: ScreenUtil().setHeight(12)),
               Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
                 child: Text(
                   "Let us know more about you",
                   style: GoogleFonts.firaSans(
-                    fontSize: 16,
+                    fontSize: ScreenUtil().setSp(16),
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 38,
+              SizedBox(height: ScreenUtil().setHeight(38)),
+              Column(
+                children: [],
               ),
               TxtWidget(
-                  txt: "Enter Name",
-                  fontSizee: 16,
-                  fontWeight: FontWeight.w400),
-              const SizedBox(
-                height: 8,
+                txt: "Enter Name",
+                fontSizee: ScreenUtil().setSp(16),
+                fontWeight: FontWeight.w400,
               ),
+              SizedBox(height: ScreenUtil().setHeight(8)),
               TextFieldWidget(
                 textEditingController: nameController,
                 hintTextt: "Enter your Name",
@@ -93,16 +98,13 @@ class About extends StatelessWidget {
                   }
                 },
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              SizedBox(height: ScreenUtil().setHeight(16)),
               TxtWidget(
-                  txt: "National ID",
-                  fontSizee: 16,
-                  fontWeight: FontWeight.w400),
-              const SizedBox(
-                height: 8,
+                txt: "National ID",
+                fontSizee: ScreenUtil().setSp(16),
+                fontWeight: FontWeight.w400,
               ),
+              SizedBox(height: ScreenUtil().setHeight(8)),
               TextFieldWidget(
                 textEditingController: idController,
                 hintTextt: "Enter your National ID",
@@ -115,14 +117,13 @@ class About extends StatelessWidget {
                   }
                 },
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              SizedBox(height: ScreenUtil().setHeight(16)),
               TxtWidget(
-                  txt: "Email", fontSizee: 16, fontWeight: FontWeight.w400),
-              const SizedBox(
-                height: 8,
+                txt: "Email",
+                fontSizee: ScreenUtil().setSp(16),
+                fontWeight: FontWeight.w400,
               ),
+              SizedBox(height: ScreenUtil().setHeight(8)),
               TextFieldWidget(
                 textEditingController: emailController,
                 hintTextt: "Enter your Email",
@@ -135,39 +136,43 @@ class About extends StatelessWidget {
                   }
                 },
               ),
-              SizedBox(height: screenHeight * 0.3),
+              SizedBox(height: ScreenUtil().screenHeight * 0.2),
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 24,
-                  right: 24,
+                padding: EdgeInsets.only(
+                  left: ScreenUtil().setWidth(24),
+                  right: ScreenUtil().setWidth(24),
                 ),
                 child: SizedBox(
-                  width: 382,
-                  height: 56,
+                  width: ScreenUtil().setWidth(382),
+                  height: ScreenUtil().setHeight(56),
                   child: ElevatedButton(
-                    onPressed: () async {
-                      if (_formkey.currentState!.validate()) {
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const Screen1(),
-                          ),
+                          MaterialPageRoute(builder: (context) => const About2()),
                         );
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xffFF595A),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        )),
+                      backgroundColor: const Color(0xffFF595A),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          ScreenUtil().setWidth(12),
+                        ),
+                      ),
+                    ),
                     child: Text(
                       "Continue",
                       style: GoogleFonts.firaSans(
-                          fontSize: 16, fontWeight: FontWeight.w700),
+                        fontSize: ScreenUtil().setSp(16),
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
-              )
+              ),
+              SizedBox(height: ScreenUtil().screenHeight * 0.01),
             ],
           ),
         ),
