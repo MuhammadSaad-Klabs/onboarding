@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project1/screens/about/privacy.dart';
 import 'package:project1/screens/screen1.dart';
 
 void main() {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         home: child,
       );
       },
-        child: const Screen1(),
+        child: const privacy(),
       );
     
   }
